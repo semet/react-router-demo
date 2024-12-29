@@ -1,26 +1,36 @@
-import { Link, Outlet } from 'react-router'
+import { Outlet } from 'react-router'
+
+import { useLayout } from '@/contexts'
+import {
+  ContentWrapper,
+  Header,
+  MobileSidebar,
+  ScrollToTop,
+  SidebarContainer
+} from '@/layouts/dashboard'
 
 const DashboardLayout = () => {
+  const { containerWidth } = useLayout()
   return (
-    <div>
-      <nav>
-        <ul className="flex space-x-4">
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link to={link.to}>{link.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <Outlet />
+    <div className="flex min-h-screen">
+      <div className="bg-primary">
+        <SidebarContainer />
+        <MobileSidebar />
+      </div>
+      <div
+        className="flex flex-1 flex-col"
+        style={{
+          maxWidth: containerWidth
+        }}
+      >
+        <Header />
+        <ContentWrapper>
+          <Outlet />
+          <ScrollToTop />
+        </ContentWrapper>
+      </div>
     </div>
   )
 }
 
 export default DashboardLayout
-
-const links = [
-  { to: '/', label: 'Home' },
-  { to: 'about', label: 'About' },
-  { to: 'contact', label: 'Contact' }
-]
