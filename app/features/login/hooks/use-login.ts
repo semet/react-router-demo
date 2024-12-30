@@ -22,7 +22,7 @@ type Props = {
 export const useLogin = ({ username }: Props) => {
   const navigate = useNavigate()
   return useMutation({
-    mutationKey: ['login'],
+    mutationKey: ['login-mutation'],
     mutationFn: loginRequest,
     onSuccess: ({ data }) => {
       const {

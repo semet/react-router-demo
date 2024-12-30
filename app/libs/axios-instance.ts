@@ -144,7 +144,7 @@ axiosInstance.interceptors.response.use(
 
             clearCookies(clearData)
 
-            location.href = '/auth/login'
+            location.href = '/auth'
 
             refreshTokenPromise = null
             throw error
@@ -181,7 +181,7 @@ axiosInstance.interceptors.response.use(
       }
 
       clearCookies(clearData)
-      location.href = '/auth/login'
+      location.href = '/auth'
     } else if (
       error.response?.status &&
       ![400, 401, 404, 409, 412, 422, 429].includes(error.response.status)

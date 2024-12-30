@@ -46,7 +46,7 @@ export const LoginForm = () => {
   return (
     <FormProvider {...formMethods}>
       <div className="flex flex-col gap-6">
-        <h2 className="text-center text-lg font-semibold text-slate-600">
+        <h2 className="text-start text-lg font-semibold text-slate-600">
           Welcome Back
         </h2>
         <form

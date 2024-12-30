@@ -1,5 +1,18 @@
+import type { MetaFunction } from 'react-router'
+
+import { PinForm } from '@/features/pin'
+
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: 'Setup PIN',
+      description: 'Setup PIN page'
+    }
+  ]
+}
+
 const SetupPinPage = () => {
-  return <div>SetupPinPage</div>
+  return <PinForm />
 }
 
 export default SetupPinPage
