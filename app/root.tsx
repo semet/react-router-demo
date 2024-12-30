@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { AxiosError } from 'axios'
 import { useState } from 'react'
 import {
   isRouteErrorResponse,
@@ -9,6 +10,7 @@ import {
   Scripts,
   ScrollRestoration
 } from 'react-router'
+import { ToastContainer } from 'react-toastify'
 
 import type { Route } from './+types/root'
 import stylesheet from './app.css?url'
@@ -55,8 +57,26 @@ export default function App() {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
-            refetchOnWindowFocus: false
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+            refetchOnMount: false,
+            retryOnMount: false,
+            retry: (failureCount, error) => {
+              if (error instanceof AxiosError) {
+                const statusCode = error.response?.status
+
+                if (![500, 503].includes(statusCode as number)) {
+                  return failureCount < 3
+                }
+              }
+
+              return false
+            },
+            retryDelay: (attemptIndex) =>
+              Math.min(1000 * 2 ** attemptIndex, 10_000)
+          },
+          mutations: {
+            retry: false
           }
         }
       })
@@ -64,6 +84,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LayoutProvider>
+        <ToastContainer autoClose={1500} />
         <Outlet />
       </LayoutProvider>
       <ReactQueryDevtools

@@ -70,10 +70,12 @@ export default tseslint.config(
                 '@/configs/*/*',
                 '@/components/*/*',
                 '@/contexts/*/*',
+                '@/data/*/*',
                 '@/factories/*/*',
                 '@/features/*/*',
                 '@/hooks/*/*',
                 '@/layouts/*/*',
+                '@/libs/*/*',
                 '@/schemas/*/*',
                 '@/types/*/*',
                 '@/utils/*/**'

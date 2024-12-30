@@ -1,0 +1,7 @@
+export const ID = '__ew-id'
+export const ID2 = '__ew-sd'
+export const USERNAME = '__ew-us'
+export const IS_SETUP_REQUIRED = '__ew-setup'
+export const IS_VERIFIED = '__ew-vr'
+export const REFRESH_TOKEN = '__ew-912rtwdihbasiias7c'
+export const GUEST = 'GUEST'
