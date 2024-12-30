@@ -44,7 +44,7 @@ export const SidebarContent = () => {
       transition={{ type: 'spring', bounce: 0, duration: 0.3 }}
       ref={ref}
       className={twMerge([
-        'scrollbar-thin scrollbar-track-primary scrollbar-thumb-black/15 max-h-screen overflow-y-auto px-4 pb-20 pt-4',
+        'max-h-screen overflow-y-auto px-4 pb-20 pt-4 scrollbar-thin scrollbar-track-primary scrollbar-thumb-black/15',
         desktopSidebarExpanded ? 'w-[250px]' : 'w-auto'
       ])}
     >

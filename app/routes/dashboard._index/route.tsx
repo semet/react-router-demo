@@ -1,17 +1,19 @@
 import type { Route } from '.react-router/types/app/+types/root'
+import { PageContainer, PageTitle } from '@/layouts/dashboard'
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'New React Router App' },
-    { name: 'description', content: 'Welcome to React Router!' }
+    { title: 'Dashboard' },
+    { name: 'description', content: 'Dashboard page' }
   ]
 }
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>Welcome to React Router!</h1>
-    </div>
+    <>
+      <PageTitle title="Dashboard" />
+      <PageContainer className="space-y-4"></PageContainer>
+    </>
   )
 }
 
