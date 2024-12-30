@@ -84,8 +84,8 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LayoutProvider>
-        <ToastContainer autoClose={1500} />
         <Outlet />
+        <ToastContainer autoClose={1500} />
       </LayoutProvider>
       <ReactQueryDevtools
         initialIsOpen={false}
@@ -106,7 +106,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       error.status === 404
         ? 'The requested page could not be found.'
         : error.statusText || details
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (import.meta.env.VITE_DEV && error && error instanceof Error) {
     details = error.message
     stack = error.stack
   }

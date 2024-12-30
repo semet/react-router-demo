@@ -15,7 +15,7 @@ import {
 import { errorMessage, type TErrorMessage } from '@/data'
 import { clearCookies, dateFormatter } from '@/utils'
 
-const baseURL = process.env.API_URL
+const baseURL = import.meta.env.VITE_API_URL
 
 export const axiosInstance = axios.create({
   baseURL,

@@ -1,6 +1,7 @@
 import { type HTMLMotionProps, motion } from 'framer-motion'
 import { forwardRef, type PropsWithChildren } from 'react'
 import { type IconType } from 'react-icons'
+import { CgSpinner } from 'react-icons/cg'
 import { twMerge } from 'tailwind-merge'
 
 import { type Size, type Variant } from '@/types'
@@ -9,6 +10,7 @@ type Props = PropsWithChildren<{
   variant?: Variant
   size?: Size
   icon?: IconType
+  isLoading?: boolean
 }> &
   HTMLMotionProps<'button'>
 export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
@@ -18,6 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     variant = 'primary',
     size = 'md',
     icon: Icon,
+    isLoading,
     ...rest
   } = props
 
@@ -27,7 +30,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
       whileTap={{ scale: 0.95 }}
       ref={ref}
       className={twMerge([
-        'flex h-fit items-center justify-center rounded px-4 py-1.5 text-white',
+        'flex h-fit items-center justify-center rounded px-4 py-1.5 text-white disabled:cursor-not-allowed disabled:opacity-80',
         variant === 'primary' && 'bg-primary hover:bg-primary-100',
         variant === 'success' && 'bg-success hover:bg-success-100',
         variant === 'error' && 'bg-danger hover:bg-danger-100',
@@ -42,6 +45,12 @@ export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => {
     >
       {Icon && <Icon className="mr-2 text-lg" />}
       {children}
+      {isLoading && (
+        <CgSpinner
+          className="ml-2 animate-spin"
+          size={20}
+        />
+      )}
     </motion.button>
   )
 })
