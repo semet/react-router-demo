@@ -1,7 +1,5 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { AxiosError } from 'axios'
-import { useState } from 'react'
 import {
   isRouteErrorResponse,
   Links,
@@ -15,6 +13,7 @@ import { ToastContainer } from 'react-toastify'
 import type { Route } from './+types/root'
 import stylesheet from './app.css?url'
 import { LayoutProvider } from './contexts'
+import { queryClient } from './libs'
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -27,7 +26,7 @@ export const links: Route.LinksFunction = () => [
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
   },
-  { rel: 'stylesheet', href: stylesheet }
+  { rel: 'stylesheet', href: stylesheet, as: 'style' }
 ]
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -52,35 +51,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            refetchOnWindowFocus: false,
-            refetchOnReconnect: false,
-            refetchOnMount: false,
-            retryOnMount: false,
-            retry: (failureCount, error) => {
-              if (error instanceof AxiosError) {
-                const statusCode = error.response?.status
-
-                if (![500, 503].includes(statusCode as number)) {
-                  return failureCount < 3
-                }
-              }
-
-              return false
-            },
-            retryDelay: (attemptIndex) =>
-              Math.min(1000 * 2 ** attemptIndex, 10_000)
-          },
-          mutations: {
-            retry: false
-          }
-        }
-      })
-  )
   return (
     <QueryClientProvider client={queryClient}>
       <LayoutProvider>

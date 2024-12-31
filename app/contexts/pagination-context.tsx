@@ -9,13 +9,12 @@ import {
   type PropsWithChildren,
   type SetStateAction,
   useContext,
-  useEffect,
   useState
 } from 'react'
+import { useLocation } from 'react-router'
 
 type PaginationContextType<T = Record<string, unknown>> = {
   limit: number
-  setLimit: Dispatch<SetStateAction<number>>
   filter: T | undefined
   setFilter: Dispatch<SetStateAction<T | undefined>>
   pagination: PaginationState
@@ -42,26 +41,26 @@ const PaginationProvider = <T,>({
   initialFilter,
   pageSize = 10
 }: PaginationProviderProps<T>) => {
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
+  const limit = searchParams.get('limit')
+    ? Number(searchParams.get('limit'))
+    : pageSize
   const [filter, setFilter] = useState<Record<string, unknown> | undefined>(
     () => initialFilter || undefined
   )
-  const [limit, setLimit] = useState<number>(pageSize)
+
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
-    pageSize: pageSize
+    pageSize: limit ?? pageSize
   })
   const [sorting, setSorting] = useState<SortingState>([])
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
   const resetPagination = () => setPagination({ ...pagination, pageIndex: 0 })
   const page = pagination.pageIndex + 1
 
-  useEffect(() => {
-    setLimit(pagination.pageSize)
-  }, [pagination.pageSize])
-
   const value = {
     limit,
-    setLimit,
     filter,
     setFilter,
     pagination,
