@@ -1,12 +1,15 @@
+import { Card, ToolbarContainer } from '@/components/base-ui'
 import { CreateDomain, DomainListTable } from '@/features/domain-list'
 
 export const DomainListWrapper = () => {
   return (
     <section className="flex flex-col gap-4">
-      <div className="self-end">
+      <ToolbarContainer className="flex flex-col gap-4 md:flex-row md:items-end md:justify-end">
         <CreateDomain />
-      </div>
-      <DomainListTable />
+      </ToolbarContainer>
+      <Card>
+        <DomainListTable />
+      </Card>
     </section>
   )
 }

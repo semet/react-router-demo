@@ -9,6 +9,7 @@ import {
   type PropsWithChildren,
   type SetStateAction,
   useContext,
+  useEffect,
   useState
 } from 'react'
 
@@ -53,6 +54,11 @@ const PaginationProvider = <T,>({
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
   const resetPagination = () => setPagination({ ...pagination, pageIndex: 0 })
   const page = pagination.pageIndex + 1
+
+  useEffect(() => {
+    setLimit(pagination.pageSize)
+  }, [pagination.pageSize])
+
   const value = {
     limit,
     setLimit,
