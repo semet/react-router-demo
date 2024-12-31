@@ -1,14 +1,15 @@
-import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 
 import { Button, SidePanel } from '@/components/base-ui'
+import { usePanel } from '@/contexts'
+import { CreateDomainForm } from '@/features/domain-list'
 
 export const CreateDomain = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { isOpen, setIsOpen } = usePanel()
   return (
     <SidePanel
       position="right"
-      size="md"
+      size="lg"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       button={
@@ -23,6 +24,8 @@ export const CreateDomain = () => {
         </Button>
       }
       title="Create Domain"
-    ></SidePanel>
+    >
+      <CreateDomainForm />
+    </SidePanel>
   )
 }
