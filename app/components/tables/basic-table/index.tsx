@@ -56,7 +56,7 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
             {table.getHeaderGroups().map((headerGroup) => (
               <tr
                 key={headerGroup.id}
-                className="text-left text-sm font-semibold text-slate-600"
+                className="border-b border-slate-200 text-left text-sm font-semibold text-slate-600"
               >
                 {headerGroup.headers.map((header) => {
                   const columnRelativeDepth = header.depth - header.column.depth
@@ -80,8 +80,8 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
                       colSpan={header.colSpan}
                       rowSpan={rowSpan}
                       className={twMerge([
-                        'content-end border border-slate-200 p-4',
-                        !header.isPlaceholder && 'text-center'
+                        'p-4',
+                        !header.isPlaceholder && 'text-left'
                       ])}
                     >
                       <>
@@ -104,7 +104,7 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
                     <motion.tr
                       key={row.id}
                       className={twMerge([
-                        'text-sm text-slate-500',
+                        'border-b border-slate-200 text-sm text-slate-500',
                         hovered && 'hover:bg-slate-100',
                         stripped && 'odd:bg-slate-100',
                         state?.pagination ? 'last:border-b' : 'last:border-b-0'
@@ -113,7 +113,7 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
                       {row.getVisibleCells().map((cell) => (
                         <td
                           key={cell.id}
-                          className="border border-slate-200 p-4"
+                          className="p-4"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,

@@ -6,6 +6,7 @@ import {
   MdKeyboardArrowRight,
   MdKeyboardDoubleArrowRight
 } from 'react-icons/md'
+import { useLocation, useNavigate } from 'react-router'
 import { twMerge } from 'tailwind-merge'
 
 import { Input } from '@/components/forms'
@@ -13,9 +14,11 @@ import { type PaginationProps } from '@/types'
 
 export const Pagination = <T,>(props: PaginationProps<T>) => {
   const { table, totalData, pageCount } = props
+  const navigate = useNavigate()
+  const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
 
   const currentPage = table.getState().pagination.pageIndex + 1
-
   const formMethods = useForm({
     defaultValues: {
       page: table.getState().pagination.pageIndex + 1
@@ -38,23 +41,42 @@ export const Pagination = <T,>(props: PaginationProps<T>) => {
   })
   const handleFirstPageClick = () => {
     table.setPageIndex(0)
+    searchParams.set('page', '1')
+    navigate({
+      search: searchParams.toString()
+    })
     if (touchedFields.page) {
       setValue('page', 1)
     }
   }
   const handlePrevPageClick = () => {
     table.previousPage()
+    searchParams.set('page', table.getState().pagination.pageIndex.toString())
+    navigate({
+      search: searchParams.toString()
+    })
     if (touchedFields.page) {
       setValue('page', table.getState().pagination.pageIndex)
     }
   }
   const handleLastPageClick = () => {
     table.setPageIndex(table.getPageCount() - 1)
+    searchParams.set('page', table.getPageCount().toString())
+    navigate({
+      search: searchParams.toString()
+    })
     if (touchedFields.page) {
       setValue('page', table.getPageCount())
     }
   }
   const handleNextPageClick = () => {
+    searchParams.set(
+      'page',
+      (table.getState().pagination.pageIndex + 2).toString()
+    )
+    navigate({
+      search: searchParams.toString()
+    })
     table.nextPage()
     if (touchedFields.page) {
       setValue('page', table.getState().pagination.pageIndex + 2)

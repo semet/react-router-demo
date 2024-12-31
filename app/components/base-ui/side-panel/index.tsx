@@ -61,7 +61,7 @@ export const SidePanel: FC<Props> = (props) => {
             />
             <div
               className={twMerge([
-                'fixed top-0 flex justify-center',
+                'fixed bottom-0 top-0 flex justify-center',
                 position === 'right' ? 'right-0' : 'left-0',
                 size === 'sm' ? 'w-1/4' : size === 'md' ? 'w-1/3' : 'w-1/2'
               ])}
@@ -80,7 +80,7 @@ export const SidePanel: FC<Props> = (props) => {
                   transition: { duration: 0.5, type: 'spring', bounce: 0 }
                 }}
                 className={twMerge([
-                  'relative h-screen w-full overflow-hidden bg-white',
+                  'relative w-full overflow-hidden bg-white',
                   panelClassName
                 ])}
               >
@@ -103,7 +103,7 @@ export const SidePanel: FC<Props> = (props) => {
                 <Description
                   as={'div'}
                   className={twMerge([
-                    'max-h-[92%] space-y-2 overflow-y-auto p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/15',
+                    'h-[calc(100svh-60px)] space-y-2 overflow-y-auto p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/15',
                     contentClassName
                   ])}
                 >
