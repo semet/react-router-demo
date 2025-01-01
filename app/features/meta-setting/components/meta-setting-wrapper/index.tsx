@@ -1,16 +1,16 @@
 import { Card, ToolbarContainer, VStack } from '@/components/base-ui'
 import { PanelProvider } from '@/contexts'
-import { CreateDomain, DomainListTable } from '@/features/domain-list'
+import { IndexHomepage, MetaSettingTable } from '@/features/meta-setting'
 
-export const DomainListWrapper = () => {
+export const MetaSettingWrapper = () => {
   return (
     <PanelProvider>
       <VStack>
         <ToolbarContainer>
-          <CreateDomain />
+          <IndexHomepage />
         </ToolbarContainer>
         <Card>
-          <DomainListTable />
+          <MetaSettingTable />
         </Card>
       </VStack>
     </PanelProvider>

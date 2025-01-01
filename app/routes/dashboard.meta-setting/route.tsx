@@ -1,27 +1,27 @@
 import { PaginationProvider } from '@/contexts'
-import { DomainListWrapper } from '@/features/domain-list'
+import { MetaSettingWrapper } from '@/features/meta-setting'
 import { PageContainer, PageTitle } from '@/layouts/dashboard'
 
 import type { Route } from './+types/route'
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Domain List' },
-    { name: 'description', content: 'Domain List page' }
+    { title: 'Meta Settings' },
+    { name: 'description', content: 'Meta Settings page' }
   ]
 }
 
-const DomainListPage = () => {
+const MetaSettingPage = () => {
   return (
     <>
-      <PageTitle title="Domain List" />
+      <PageTitle title="meta Setting" />
       <PageContainer className="space-y-4">
         <PaginationProvider>
-          <DomainListWrapper />
+          <MetaSettingWrapper />
         </PaginationProvider>
       </PageContainer>
     </>
   )
 }
 
-export default DomainListPage
+export default MetaSettingPage

@@ -8,7 +8,8 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [tailwindcss, autoprefixer]
-    }
+    },
+    devSourcemap: true
   },
   plugins: [reactRouter(), tsconfigPaths()],
   server: {

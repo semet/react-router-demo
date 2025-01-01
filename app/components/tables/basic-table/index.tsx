@@ -21,11 +21,13 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
     showFooter = false,
     stripped = false,
     hovered = false,
+    showGlobalSearch = true,
     isLoading,
     pageCount,
     totalData,
     setPagination
   } = props
+
   const [globalFilter, setGlobalFilter] = useState<string>('')
   const table = useReactTable({
     columns,
@@ -48,7 +50,7 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <RowPerPage table={table} />
-        <TableSearch table={table} />
+        {showGlobalSearch && <TableSearch table={table} />}
       </div>
       <div className="max-w-screen mt-2 overflow-x-auto">
         <table className="w-full">

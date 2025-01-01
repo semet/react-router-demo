@@ -38,4 +38,4 @@ export const domainListSchema = z
 export type TDomainListResponse = z.infer<typeof domainListSchema>
 export type TDomainList = TDomainListResponse['data']
 export type TDomain = TDomainListResponse['data'][0]
-export type TDomainQueryParams = TQueryParams<unknown>
+export type TDomainParams = TQueryParams<unknown>
