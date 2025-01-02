@@ -14,4 +14,5 @@ export type BasicTableProps<T> = {
   pageCount?: number
   totalData?: number
   setPagination?: Dispatch<SetStateAction<PaginationState>>
+  showGlobalSearch?: boolean
 }

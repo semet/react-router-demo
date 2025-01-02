@@ -25,7 +25,9 @@ export const CodeEditor = <T extends Record<string, unknown>>(
     required,
     className,
     language = 'html',
-    defaultLanguage = 'html'
+    height = '50vh',
+    defaultLanguage = 'html',
+    options
   } = props
 
   const {
@@ -58,7 +60,7 @@ export const CodeEditor = <T extends Record<string, unknown>>(
         render={({ field }) => {
           return (
             <Editor
-              height="50vh"
+              height={height}
               defaultLanguage={defaultLanguage}
               language={language}
               theme="vs-light"
@@ -73,7 +75,8 @@ export const CodeEditor = <T extends Record<string, unknown>>(
                 wordWrap: 'on',
                 wrappingIndent: 'same',
                 wrappingStrategy: 'advanced',
-                fontFamily: 'JetBrains Mono, monospace'
+                fontFamily: 'JetBrains Mono, monospace',
+                ...options
               }}
             />
           )

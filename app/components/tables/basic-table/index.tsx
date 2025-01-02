@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-table'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-import { CgSpinner } from 'react-icons/cg'
 import { twMerge } from 'tailwind-merge'
 
 import { Pagination, RowPerPage, TableSearch } from '@/components/tables'
@@ -21,11 +20,13 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
     showFooter = false,
     stripped = false,
     hovered = false,
+    showGlobalSearch = true,
     isLoading,
     pageCount,
     totalData,
     setPagination
   } = props
+
   const [globalFilter, setGlobalFilter] = useState<string>('')
   const table = useReactTable({
     columns,
@@ -48,7 +49,7 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <RowPerPage table={table} />
-        <TableSearch table={table} />
+        {showGlobalSearch && <TableSearch table={table} />}
       </div>
       <div className="max-w-screen mt-2 overflow-x-auto">
         <table className="w-full">
@@ -160,14 +161,25 @@ export const BasicTable = <T,>(props: BasicTableProps<T>) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <tr>
-                      <td
-                        colSpan={table.getAllColumns().length}
-                        className="py-12 text-center"
-                      >
-                        <CgSpinner className="mx-auto animate-spin text-5xl" />
-                      </td>
-                    </tr>
+                    {table.getAllColumns().length > 1 && (
+                      <>
+                        {Array.from({
+                          length: 7
+                        }).map((_, index) => (
+                          <tr
+                            key={index}
+                            className="animate-pulse border-b border-slate-200 text-sm text-slate-500 odd:bg-slate-100 even:bg-slate-300"
+                          >
+                            {table.getAllColumns().map((column) => (
+                              <td
+                                key={column.id}
+                                className="p-6"
+                              ></td>
+                            ))}
+                          </tr>
+                        ))}
+                      </>
+                    )}
                   </motion.tbody>
                 ) : (
                   <motion.tbody

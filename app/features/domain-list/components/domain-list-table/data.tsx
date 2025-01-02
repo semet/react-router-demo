@@ -1,6 +1,6 @@
 import type { ColumnDef } from '@tanstack/react-table'
 
-import { TableAction, type TDomain } from '@/features/domain-list'
+import { DomainListAction, type TDomain } from '@/features/domain-list'
 
 export const columns: ColumnDef<TDomain>[] = [
   {
@@ -39,6 +39,6 @@ export const columns: ColumnDef<TDomain>[] = [
   },
   {
     header: 'Action',
-    cell: (info) => <TableAction domain={info.row.original} />
+    cell: (info) => <DomainListAction domain={info.row.original} />
   }
 ]

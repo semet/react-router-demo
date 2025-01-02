@@ -1,5 +1,3 @@
-import type { ClientLoaderFunctionArgs } from 'react-router'
-
 import { PaginationProvider } from '@/contexts'
 import { DomainListWrapper } from '@/features/domain-list'
 import { PageContainer, PageTitle } from '@/layouts/dashboard'
@@ -11,10 +9,6 @@ export function meta({}: Route.MetaArgs) {
     { title: 'Domain List' },
     { name: 'description', content: 'Domain List page' }
   ]
-}
-
-export const clientLoader = async ({}: ClientLoaderFunctionArgs) => {
-  return true
 }
 
 const DomainListPage = () => {

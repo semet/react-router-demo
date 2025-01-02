@@ -7,7 +7,6 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { BiSortDown, BiSortUp } from 'react-icons/bi'
-import { CgSpinner } from 'react-icons/cg'
 import { twMerge } from 'tailwind-merge'
 
 import { RowPerPage, TableSearch, Pagination } from '@/components/tables'
@@ -179,14 +178,25 @@ export const SelectableTable = <T,>(props: SelectableTableProps<T>) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <tr>
-                      <td
-                        colSpan={table.getAllColumns().length}
-                        className="py-12 text-center"
-                      >
-                        <CgSpinner className="mx-auto animate-spin text-5xl" />
-                      </td>
-                    </tr>
+                    {table.getAllColumns().length > 1 && (
+                      <>
+                        {Array.from({
+                          length: 7
+                        }).map((_, index) => (
+                          <tr
+                            key={index}
+                            className="animate-pulse border-b border-slate-200 text-sm text-slate-500 odd:bg-slate-100 even:bg-slate-300"
+                          >
+                            {table.getAllColumns().map((column) => (
+                              <td
+                                key={column.id}
+                                className="p-6"
+                              ></td>
+                            ))}
+                          </tr>
+                        ))}
+                      </>
+                    )}
                   </motion.tbody>
                 ) : (
                   <motion.tbody

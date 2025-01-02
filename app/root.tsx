@@ -55,7 +55,10 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <LayoutProvider>
         <Outlet />
-        <ToastContainer autoClose={1500} />
+        <ToastContainer
+          autoClose={1500}
+          className="z-[99999]"
+        />
       </LayoutProvider>
       <ReactQueryDevtools
         initialIsOpen={false}
