@@ -11,6 +11,7 @@ export const useGetTitleConfigs = ({ id }: Params) => {
   return useQuery({
     queryKey: queryKeys.titleConfig(id),
     queryFn: () => getTitleConfigsRequest(id),
-    placeholderData: keepPreviousData
+    placeholderData: keepPreviousData,
+    enabled: !!id
   })
 }

@@ -56,17 +56,17 @@ export function meta({}: Route.MetaArgs) {
 
 // }
 
-export const clientLoader = async ({}: LoaderFunctionArgs) => {
-  const { data: domain } = await getDomainListRequest({ page: 1, limit: 10 })
-  const { data: meta } = await getMetaSettingsRequest({ page: 1, limit: 10 })
-  const { data: title } = await getTitleConfigsRequest(meta?.[0].id ?? '')
+// export const clientLoader = async ({}: LoaderFunctionArgs) => {
+//   const { data: domain } = await getDomainListRequest({ page: 1, limit: 10 })
+//   const { data: meta } = await getMetaSettingsRequest({ page: 1, limit: 10 })
+//   const { data: title } = await getTitleConfigsRequest(meta?.[0].id ?? '')
 
-  return {
-    domain,
-    meta,
-    title
-  }
-}
+//   return {
+//     domain,
+//     meta,
+//     title
+//   }
+// }
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
   // const {} = useGetDomain({ page: 1, limit: 10 })
@@ -74,7 +74,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
   // const {} = useGetTitleConfigs({
   //   id: data?.data?.[0].id ?? ''
   // })
-  console.log('loaderData', loaderData)
+  // console.log('loaderData', loaderData)
   return (
     <>
       <PageTitle title="Dashboard" />
