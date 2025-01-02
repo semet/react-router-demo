@@ -21,6 +21,6 @@ export const columns: ColumnDef<TMetaSetting>[] = [
   {
     header: 'Actions',
     enableColumnFilter: false,
-    cell: ({ row }) => <MetaSettingsActions metaSettings={row.original} />
+    cell: ({ row }) => <MetaSettingsActions {...row.original} />
   }
 ]

@@ -1,5 +1,6 @@
 export * from './alert'
 export * from './buttons'
+export * from './submit-button'
 export * from './card'
 export * from './tab'
 export * from './modal'

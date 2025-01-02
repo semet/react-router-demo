@@ -12,10 +12,18 @@ export const MetaSettingTable = () => {
     page
   })
 
+  const sortedData = data?.data?.sort((a, b) => {
+    if (a.domain === null) return -1
+    if (b.domain === null) return 1
+    if (a.domain && b.domain)
+      return a.domain.domain.localeCompare(b.domain.domain)
+    return 0
+  })
+
   return (
     <BasicTable
       columns={columns}
-      data={data?.data}
+      data={sortedData}
       totalData={data?.meta?.total}
       pageCount={data?.meta?.last_page}
       isLoading={isFetching || isLoading}
