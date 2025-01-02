@@ -21,7 +21,6 @@ export const MetaSettingTable = () => {
       isLoading={isFetching || isLoading}
       state={{ pagination }}
       setPagination={setPagination}
-      showGlobalSearch={false}
     />
   )
 }

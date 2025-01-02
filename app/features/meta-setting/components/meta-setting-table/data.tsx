@@ -6,10 +6,10 @@ import { MetaSettingsActions, ShowMetaContent } from '@/features/meta-setting'
 export const columns: ColumnDef<TMetaSetting>[] = [
   {
     header: 'Domain',
-    cell: ({ row }) => (
-      <span>
-        {row.original.domain ? row.original.domain.domain : 'Default'}
-      </span>
+    accessorKey: 'domain',
+    accessorFn: ({ domain }) => domain?.domain ?? 'Default',
+    cell: ({ getValue }) => (
+      <span>{getValue() ? (getValue() as React.ReactNode) : 'Default'}</span>
     )
   },
   {
