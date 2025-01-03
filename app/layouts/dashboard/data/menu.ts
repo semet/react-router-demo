@@ -24,7 +24,7 @@ import { type Variant } from '@/types'
 export type Menu = {
   id: number
   name: string
-  icon: IconType | Element
+  icon: IconType
   href?: string
   badge?: string
   badgeVariant?: Variant
