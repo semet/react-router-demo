@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { metaSchema } from '@/schemas'
+import { responseMetaSchema } from '@/schemas'
 import type { TQueryParams } from '@/types'
 
 export const domainListSchema = z
@@ -33,7 +33,7 @@ export const domainListSchema = z
       })
     )
   })
-  .merge(metaSchema)
+  .merge(responseMetaSchema)
 
 export type TDomainListResponse = z.infer<typeof domainListSchema>
 export type TDomainList = TDomainListResponse['data']

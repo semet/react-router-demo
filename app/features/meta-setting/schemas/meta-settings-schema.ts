@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { metaSchema } from '@/schemas'
+import { responseMetaSchema } from '@/schemas'
 import type { TQueryParams } from '@/types'
 
 export const metaSettingSchema = z
@@ -49,7 +49,7 @@ export const metaSettingSchema = z
       })
     )
   })
-  .merge(metaSchema)
+  .merge(responseMetaSchema)
 
 export type TMetaSettingResponse = z.infer<typeof metaSettingSchema>
 export type TMetaSetting = TMetaSettingResponse['data'][number]

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const metaSchema = z.object({
+export const responseMetaSchema = z.object({
   links: z.object({ first: z.string(), last: z.string() }),
   meta: z.object({
     current_page: z.number(),
@@ -11,4 +11,4 @@ export const metaSchema = z.object({
   })
 })
 
-export type TRequestMeta = z.infer<typeof metaSchema>
+export type TResponseMeta = z.infer<typeof responseMetaSchema>

@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
   type SetStateAction,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useState
 } from 'react'
 import { useWindowSize } from 'usehooks-ts'
@@ -38,7 +38,7 @@ const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
     setShowMobileSidebar((prev) => !prev)
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!width) {
       setContainerWidth('100%')
     }
@@ -48,7 +48,7 @@ const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
       setContainerWidth(`calc(100% - ${desktopSidebarExpanded ? 250 : 70}px)`)
     }
   }, [width, desktopSidebarExpanded])
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === 'undefined') return
     if (width && width < 1024) {
       setDesktopSidebarExpanded(false)
