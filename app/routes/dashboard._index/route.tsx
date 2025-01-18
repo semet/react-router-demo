@@ -8,6 +8,10 @@ export function meta({}: Route.MetaArgs) {
   ]
 }
 
+export const loader = async ({}: Route.LoaderArgs) => {
+  return true
+}
+
 const HomePage = () => {
   return (
     <>
